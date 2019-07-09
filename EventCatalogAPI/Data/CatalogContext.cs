@@ -41,6 +41,17 @@ namespace EventCatalogAPI.Data
                 .HasMaxLength(50);
             builder.Property(c => c.Price)
                 .IsRequired();
+            builder.Property(c => c.Address1)
+                .IsRequired();
+            builder.Property(c => c.City)
+                .IsRequired();
+            builder.Property(c => c.State)
+                .IsRequired();
+            builder.Property(c => c.Zipcode)
+                .IsRequired();
+            builder.Property(c => c.EventDateTime)
+                .IsRequired();
+
 
             builder.HasOne(c => c.CatalogType)
                 .WithMany()
