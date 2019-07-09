@@ -24,5 +24,11 @@ namespace EventCatalogAPI.Domain
 
         public int CatalogCategoryId { get; set; }
         public virtual CatalogCategory CatalogCategory { get; set; }
+
+        public int CatalogEventCityId { get; set; }
+        public virtual CatalogEventCity CatalogEventCity { get; set; }
+
+        public int CatalogEventZipcodeId { get; set; }
+        public virtual CatalogEventZipcode CatalogEventZipcode { get; set; }
     }
 }
