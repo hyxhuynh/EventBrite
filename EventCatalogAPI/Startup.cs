@@ -26,9 +26,21 @@ namespace EventCatalogAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-           // var connectionString = Configuration["ConnectionString"];
-           // services.AddDbContext<CatalogContext>(options =>
-        //options.UseSqlServer(connectionString)); //maybe?
+            var connectionString = Configuration["ConnectionString"];
+            services.AddDbContext<CatalogContext>(options =>
+                    options.UseSqlServer(connectionString));
+            services.AddSwaggerGen(options =>
+            {
+                options.DescribeAllEnumsAsStrings();
+                options.SwaggerDoc("v1",
+                    new Swashbuckle.AspNetCore.Swagger.Info
+                    {
+                        Title = "EventBrite - EventCatalogAPI",
+                        Version = "V1",
+                        Description = "Event catalog",
+                        TermsOfService = "Terms of Service"
+                    });
+            });
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
@@ -39,7 +51,11 @@ namespace EventCatalogAPI
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseSwagger()
+                .UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint($"/swagger/v1/json", "EventCatalogAPI V1");
+                });
             app.UseMvc();
         }
     }
