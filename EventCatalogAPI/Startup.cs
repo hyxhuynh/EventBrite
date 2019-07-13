@@ -29,6 +29,8 @@ namespace EventCatalogAPI
             var connectionString = Configuration["ConnectionString"];
             services.AddDbContext<CatalogContext>(options =>
                     options.UseSqlServer(connectionString));
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
             services.AddSwaggerGen(options =>
             {
                 options.DescribeAllEnumsAsStrings();
@@ -41,7 +43,7 @@ namespace EventCatalogAPI
                         TermsOfService = "Terms of Service"
                     });
             });
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,7 +56,7 @@ namespace EventCatalogAPI
             app.UseSwagger()
                 .UseSwaggerUI(c =>
                 {
-                    c.SwaggerEndpoint($"/swagger/v1/json", "EventCatalogAPI V1");
+                    c.SwaggerEndpoint($"/swagger/v1/swagger.json", "EventCatalogAPI V1");
                 });
             app.UseMvc();
         }
