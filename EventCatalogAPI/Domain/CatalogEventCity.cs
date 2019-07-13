@@ -8,6 +8,6 @@ namespace EventCatalogAPI.Domain
     public class CatalogEventCity
     {
         public int Id { get; set; }
-        public string Type { get; set; }
+        public string City { get; set; }
     }
 }
