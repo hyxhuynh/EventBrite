@@ -127,6 +127,23 @@ namespace EventCatalogAPI.Controllers
         }
 
         [HttpGet]
+        [Route("[action]")]
+        public async Task<IActionResult> CatalogEventCities()
+        {
+            var events = await _context.CatalogEventCities.ToListAsync();
+            return Ok(events);
+        }
+
+        [HttpGet]
+        [Route("[action]")]
+        public async Task<IActionResult> CatalogEventZipcodes()
+        {
+            var events = await _context.CatalogEventZipcodes.ToListAsync();
+            return Ok(events);
+        }
+
+
+        [HttpGet]
         [Route("events/{id:int}")]
         public async Task<IActionResult> GetEventsById(int id)
         {
