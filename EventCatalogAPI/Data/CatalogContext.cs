@@ -47,12 +47,13 @@ namespace EventCatalogAPI.Data
                 .IsRequired();
             builder.Property(c => c.Address1)
                 .IsRequired();
-            builder.Property(c => c.City)
+            //remove city and zipcode as per allie's branch
+           // builder.Property(c => c.City)
+              //  .IsRequired();
+             builder.Property(c => c.State)
                 .IsRequired();
-            builder.Property(c => c.State)
-                .IsRequired();
-            builder.Property(c => c.Zipcode)
-                .IsRequired();
+            //builder.Property(c => c.Zipcode)
+               // .IsRequired();
             builder.Property(c => c.EventDateTime)
                 .IsRequired();
 
