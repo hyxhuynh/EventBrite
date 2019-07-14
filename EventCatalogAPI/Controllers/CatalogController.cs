@@ -40,7 +40,7 @@ namespace EventCatalogAPI.Controllers
                  .Take(pageSize)
                  .ToListAsync();
             events = ChangePictureUrl(events);
-            var model = new PaginatedItemsViewModel<CatalogEvent>
+            var model = new PaginatedEventsViewModel<CatalogEvent>
             {
                 PageSize = pageSize,
                 PageIndex = pageIndex,
@@ -85,7 +85,7 @@ namespace EventCatalogAPI.Controllers
                               .Take(pageSize)
                               .ToListAsync();
             eventsOnPage = ChangePictureUrl(eventsOnPage);
-            var model = new PaginatedItemsViewModel<CatalogEvent>
+            var model = new PaginatedEventsViewModel<CatalogEvent> 
             {
                 PageSize = pageSize,
                 PageIndex = pageIndex,
@@ -184,7 +184,7 @@ namespace EventCatalogAPI.Controllers
                               .Take(pageSize)
                               .ToListAsync();
             eventsOnPage = ChangePictureUrl(eventsOnPage);
-            var model = new PaginatedItemsViewModel<CatalogEvent>
+            var model = new PaginatedEventsViewModel<CatalogEvent>
             {
                 PageSize = pageSize,
                 PageIndex = pageIndex,
