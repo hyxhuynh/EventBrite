@@ -80,6 +80,15 @@ namespace EventCatalogAPI.Data
                 // Festival, Food & Drink, Kirkland, 98033
                 new CatalogEvent() { CatalogTypeId = 2, CatalogCategoryId = 3, Description = "Sip Kirkland is a tasting event showcasing top tier wineries and breweries from the Pacific Northwest region. ", Name = "Sip Kirkland", Price = 14, Address1 = "25 Lakeshore Plaza", Address2 = "", CatalogEventCityId = 3, State = "WA", CatalogEventZipcodeId = 4, EventDateTime = new DateTime(2019, 7, 27, 13, 0, 0), PictureUrl = "http://externalcatalogbaseurltobereplaced/api/pic/4" },
 
+                //Performance, Music, Seattle, 98103
+                new CatalogEvent() {CatalogTypeId=5,CatalogCategoryId=8, CatalogEventCityId = 1, CatalogEventZipcodeId = 1, Description = "30 Years x 30 Cities", Name = "Helmet 30th Anniversary Tour", Price = 24, PictureUrl = "http://externalcatalogbaseurltobereplaced/api/pic/5", Address1 = "645 NW 45th Street", Address2 = "", State = "WA", EventDateTime= new DateTime(2019, 11, 17, 21, 00, 0)},
+
+                // Screening, Film & Media, Seattle, 98103
+                new CatalogEvent() {CatalogTypeId=6, CatalogCategoryId=7, CatalogEventCityId=1, CatalogEventZipcodeId =1, Description = "With Marty McFly heading to the 50's and our iconic drive-in style, you'll feel like you're in the past too! Free and All Ages!", Name = "Outdoor Movie: Back to the Future!", Price = 0, PictureUrl = "http://externalcatalogbaseurltobereplaced/api/pic/6", Address1 = "12325 30th Ave NE", Address2 = "", State = "WA", EventDateTime = new DateTime(2019, 7, 23, 19, 00, 0) },
+
+                //Festival, Community, Kirkland,
+                new CatalogEvent() {CatalogTypeId=2, CatalogCategoryId=1, CatalogEventCityId=3, CatalogEventZipcodeId=4, Description = "Come and experience the beauty as thousands of lanterns illuminate the water in Kirkland, WA", Name = "1000 Lights Water Lantern Festival", Price = 25, PictureUrl = "http://externalcatalogbaseurltobereplaced/api/pic/7", Address1 = "9703 NE Juanita Drive", Address2 = "", State = "WA", EventDateTime = new DateTime(2019, 8, 10, 18, 00, 0)},
+
             };
 
         }
@@ -131,6 +140,8 @@ namespace EventCatalogAPI.Data
                 new CatalogCategory() {Category = "Science & Tech"}, // 4
                 new CatalogCategory() {Category = "Sport & Fitness"}, // 5
                 new CatalogCategory() {Category = "Travel & Outdoor"}, // 6
+                new CatalogCategory() {Category = "Film & Media"}, //7
+                new CatalogCategory() {Category = "Music"} //8
             };
         }
     }
