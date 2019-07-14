@@ -92,11 +92,12 @@ namespace EventCatalogAPI.Data
                 new CatalogEvent() { CatalogTypeId = 3, CatalogCategoryId = 4, Description = "Seattle SQL provides opportunities to enjoy data experts visiting the area, networking with peers, and to share knowledge about Microsoft data platforms, including SQL Server and SQL Server on Azure. as well as professional development.", Name = "Seattle SQL Monthly Meetings", Price = 0, Address1 = "Bank of America Fifth Avenue Plaza 800 5th Avenue", Address2 = "27th Floor", CatalogEventCityId = 1, State = "WA", CatalogEventZipcodeId = 5, EventDateTime = new DateTime(2019, 7, 26, 13, 30, 0), PictureUrl = "http://externalcatalogbaseurltobereplaced/api/pic/8" },
 
                  // Networking, Science & Tech, Seattle, 98121
-                new CatalogEvent() { CatalogTypeId = 3, CatalogCategoryId = 4, Description = "Join us for drinks, snacks and good conversation with Code Fellows' students, staff, and alumni. You'll have an opportunity to learn more about Code Fellows’ programs and what a future career in coding can look like for you.", Name = "Happy Hour at Code Fellows", Price = 0, Address1 = "Code Fellows 2901 3rd Avenue", Address2 = "#300", CatalogEventCityId = 1, State = "WA", CatalogEventZipcodeId = 6, EventDateTime = new DateTime(2019, 7, 18, 16, 30, 0), PictureUrl = "http://externalcatalogbaseurltobereplaced/api/pic/9" },
+                 //change zipcode id from 6 to 7 - no other 7
+                new CatalogEvent() { CatalogTypeId = 3, CatalogCategoryId = 4, Description = "Join us for drinks, snacks and good conversation with Code Fellows' students, staff, and alumni. You'll have an opportunity to learn more about Code Fellows’ programs and what a future career in coding can look like for you.", Name = "Happy Hour at Code Fellows", Price = 0, Address1 = "Code Fellows 2901 3rd Avenue", Address2 = "#300", CatalogEventCityId = 1, State = "WA", CatalogEventZipcodeId = 7, EventDateTime = new DateTime(2019, 7, 18, 16, 30, 0), PictureUrl = "http://externalcatalogbaseurltobereplaced/api/pic/9" },
 
-                
                  // Convention, Family & Education, Seattle, 98122
-                new CatalogEvent() { CatalogTypeId = 3, CatalogCategoryId = 4, Description = "Learn about admissions requirements and application deadlines for graduate programs in social work, public policy, nonprofit management, international affairs, public interest law, social entrepreneurship, and many more", Name = "Seattle Idealist Grad Fair 2019", Price = 0, Address1 = "Seattle University, Campion Ballroom 914 E Jefferson Street", Address2 = "", CatalogEventCityId = 1, State = "WA", CatalogEventZipcodeId = 6, EventDateTime = new DateTime(2019, 10, 17, 17, 00, 0), PictureUrl = "http://externalcatalogbaseurltobereplaced/api/pic/10" },
+                 //change type and category id to 1 and 2 to match description- no other 2
+                new CatalogEvent() { CatalogTypeId = 1, CatalogCategoryId = 2, Description = "Learn about admissions requirements and application deadlines for graduate programs in social work, public policy, nonprofit management, international affairs, public interest law, social entrepreneurship, and many more", Name = "Seattle Idealist Grad Fair 2019", Price = 0, Address1 = "Seattle University, Campion Ballroom 914 E Jefferson Street", Address2 = "", CatalogEventCityId = 1, State = "WA", CatalogEventZipcodeId = 6, EventDateTime = new DateTime(2019, 10, 17, 17, 00, 0), PictureUrl = "http://externalcatalogbaseurltobereplaced/api/pic/10" },
 
             };
 
@@ -137,7 +138,9 @@ namespace EventCatalogAPI.Data
                 new CatalogType() {Type = "Festival"}, // 2
                 new CatalogType() {Type = "Networking"}, // 3
                 new CatalogType() {Type = "Party"}, // 4
-                new CatalogType() {Type = "Performance"} // 5
+                new CatalogType() {Type = "Performance"}, // 5
+                //added back screening
+                new CatalogType() {Type = "Screening"} //6
             };
         }
 
