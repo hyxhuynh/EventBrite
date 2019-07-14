@@ -79,16 +79,16 @@ namespace EventCatalogAPI.Data
                 // Festival, Food & Drink, Kirkland, 98033
                 new CatalogEvent() { CatalogTypeId = 2, CatalogCategoryId = 3, Description = "Sip Kirkland is a tasting event showcasing top tier wineries and breweries from the Pacific Northwest region. ", Name = "Sip Kirkland", Price = 14, Address1 = "25 Lakeshore Plaza", Address2 = "", CatalogEventCityId = 3, State = "WA", CatalogEventZipcodeId = 4, EventDateTime = new DateTime(2019, 7, 27, 13, 0, 0), PictureUrl = "http://externalcatalogbaseurltobereplaced/api/pics/4" },
 
-                //Performance, Music, Issaquah, 98029
-                new CatalogEvent() {CatalogTypeId=5,CatalogCategoryId=8, CatalogEventCityId = 2, CatalogEventZipcodeId = 2, Description = "Concert", Name = "Devin Townsend", Price = 65, PictureUrl = "http://externalcatalogbaseurltobereplaced/api/pics/5", Address1 = "20 Lander Street", Address2 = "", State = "WA", EventDateTime= new DateTime(2019, 10, 12, 9, 00, 0)},
+                //Performance, Music, Seattle, 98103
+                new CatalogEvent() {CatalogTypeId=5,CatalogCategoryId=8, CatalogEventCityId = 1, CatalogEventZipcodeId = 1, Description = "30 Years x 30 Cities", Name = "Helmet 30th Anniversary Tour", Price = 24, PictureUrl = "http://externalcatalogbaseurltobereplaced/api/pics/5", Address1 = "645 NW 45th Street", Address2 = "", State = "WA", EventDateTime= new DateTime(2019, 11, 17, 21, 00, 0)},
 
-                // Screening, Film & Media, Kirkland, 98033
-                new CatalogEvent() {CatalogTypeId=6, CatalogCategoryId=7, CatalogEventCityId=3, CatalogEventZipcodeId =4 , Description = "Film Screening", Name = "Star Wars", Price = 20, PictureUrl = "http://externalcatalogbaseurltobereplaced/api/pics/6", Address1 = "1000 Mercer Street SW", Address2 = "", State = "WA", EventDateTime = new DateTime(2019, 8, 3, 3, 47, 0) },
+                // Screening, Film & Media, Seattle, 98103
+                new CatalogEvent() {CatalogTypeId=6, CatalogCategoryId=7, CatalogEventCityId=1, CatalogEventZipcodeId =1, Description = "With Marty McFly heading to the 50's and our iconic drive-in style, you'll feel like you're in the past too! Free and All Ages!", Name = "Outdoor Movie: Back to the Future!", Price = 0, PictureUrl = "http://externalcatalogbaseurltobereplaced/api/pics/6", Address1 = "12325 30th Ave NE", Address2 = "", State = "WA", EventDateTime = new DateTime(2019, 7, 23, 19, 00, 0) },
 
-                //Festival, Film, Seattle, 98103, using categoryid 1 for test
-                new CatalogEvent() {CatalogTypeId=2, CatalogCategoryId=1, CatalogEventCityId=1, CatalogEventZipcodeId=1, Description = "Seattle's Foreign Independent Film Festival", Name = "Festy", Price = 40, PictureUrl = "http://externalcatalogbaseurltobereplaced/api/pics/7", Address1 = "4006 Feiner Drive", Address2 = "", State = "WA", EventDateTime = new DateTime(2019, 9, 5, 2, 30, 0)},
+                //Festival, Community, Kirkland,
+                new CatalogEvent() {CatalogTypeId=2, CatalogCategoryId=1, CatalogEventCityId=3, CatalogEventZipcodeId=4, Description = "Come and experience the beauty as thousands of lanterns illuminate the water in Kirkland, WA", Name = "1000 Lights Water Lantern Festival", Price = 25, PictureUrl = "http://externalcatalogbaseurltobereplaced/api/pics/7", Address1 = "9703 NE Juanita Drive", Address2 = "", State = "WA", EventDateTime = new DateTime(2019, 8, 10, 18, 00, 0)},
 
-                //Something, something, sample using type id 1 and category id 2
+                //Something, something, sample using type id 1 and category id 2C:\Users\xealan\Documents\Kal Academy\EventBrite\EventCatalogAPI\Data\CatalogContext.cs
                 new CatalogEvent() {CatalogTypeId=1, CatalogCategoryId=2, CatalogEventCityId=1, CatalogEventZipcodeId=1, Description = "Test1", Name = "Test1", Price = 40, PictureUrl = "http://externalcatalogbaseurltobereplaced/api/pics/8", Address1 = "4006 Feiner Drive", Address2 = "", State = "WA", EventDateTime = new DateTime(2019, 9, 5, 2, 30, 0)},
 
                 // Performance, Music, Seattle, 98134, using categoryid 4 for test, need to finish up
