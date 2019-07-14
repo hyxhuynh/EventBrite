@@ -88,7 +88,7 @@ namespace EventCatalogAPI.Data
                 //Festival, Community, Kirkland,
                 new CatalogEvent() {CatalogTypeId=2, CatalogCategoryId=1, CatalogEventCityId=3, CatalogEventZipcodeId=4, Description = "Come and experience the beauty as thousands of lanterns illuminate the water in Kirkland, WA", Name = "1000 Lights Water Lantern Festival", Price = 25, PictureUrl = "http://externalcatalogbaseurltobereplaced/api/pics/7", Address1 = "9703 NE Juanita Drive", Address2 = "", State = "WA", EventDateTime = new DateTime(2019, 8, 10, 18, 00, 0)},
 
-                //Something, something, sample using type id 1 and category id 2C:\Users\xealan\Documents\Kal Academy\EventBrite\EventCatalogAPI\Data\CatalogContext.cs
+                //Something, something, sample using category id 2
                 new CatalogEvent() {CatalogTypeId=1, CatalogCategoryId=2, CatalogEventCityId=1, CatalogEventZipcodeId=1, Description = "Test1", Name = "Test1", Price = 40, PictureUrl = "http://externalcatalogbaseurltobereplaced/api/pics/8", Address1 = "4006 Feiner Drive", Address2 = "", State = "WA", EventDateTime = new DateTime(2019, 9, 5, 2, 30, 0)},
 
                 // Performance, Music, Seattle, 98134, using categoryid 4 for test, need to finish up
