@@ -96,7 +96,6 @@ namespace EventCatalogAPI.Controllers
             return Ok(model);
         }
 
-
         private List<CatalogEvent> ChangePictureUrl(
             List<CatalogEvent> events)
         {
@@ -152,19 +151,19 @@ namespace EventCatalogAPI.Controllers
                 return BadRequest("Incorrect Id!");
             }
 
-            var even = await _context.CatalogEvents
+            var eventItem = await _context.CatalogEvents
                             .SingleOrDefaultAsync(c => c.Id == id);
 
 
-            if (even == null)
+            if (eventItem == null)
             {
                 return NotFound("Event item not found");
             }
 
-            even.PictureUrl = even.PictureUrl
+            eventItem.PictureUrl = eventItem.PictureUrl
                  .Replace("http://externalcatalogbaseurltobereplaced"
                  , _config["ExternalCatalogBaseUrl"]);
-            return Ok(even);
+            return Ok(eventItem);
         }
 
         //GET api/Catalog/items/withname/Wonder?pageSize=2&pageIndex=0
@@ -193,65 +192,63 @@ namespace EventCatalogAPI.Controllers
             };
 
             return Ok(model);
-
         }
-        
+        //JewelsonContainer- instead of "Item"  for the next 3 methods Kal states "Product" - just a naming difference
         [HttpPost]
         [Route("events")]
-        public async Task<IActionResult> CreateEventProduct(
-            [FromBody] CatalogEvent eventproduct)
+        public async Task<IActionResult> CreateEvent(
+            [FromBody] CatalogEvent individualEvent)
         {
-            var even = new CatalogEvent
+            var eventItem = new CatalogEvent
             {
-                CatalogTypeId = eventproduct.CatalogTypeId,
-                CatalogCategoryId = eventproduct.CatalogCategoryId,
-                CatalogEventZipcodeId = eventproduct.CatalogEventZipcodeId,
-                CatalogEventCityId = eventproduct.CatalogEventCityId,
-                Description = eventproduct.Description,
-                Name = eventproduct.Name,
-                PictureUrl = eventproduct.PictureUrl,
-                Price = eventproduct.Price
+                CatalogTypeId = individualEvent.CatalogTypeId,
+                CatalogCategoryId = individualEvent.CatalogCategoryId,
+                CatalogEventZipcodeId = individualEvent.CatalogEventZipcodeId,
+                CatalogEventCityId = individualEvent.CatalogEventCityId,
+                Description = individualEvent.Description,
+                Name = individualEvent.Name,
+                PictureUrl = individualEvent.PictureUrl,
+                Price = individualEvent.Price
             };
-            _context.CatalogEvents.Add(even);
+            _context.CatalogEvents.Add(individualEvent);
             await _context.SaveChangesAsync();
-            return CreatedAtAction(nameof(GetEventsById), new { id = even.Id });
+            return CreatedAtAction(nameof(GetEventsById), new { id = individualEvent.Id });
         }
-
 
         [HttpPut]
         [Route("events")]
-        public async Task<IActionResult> UpdateEventProduct(
-            [FromBody] CatalogEvent eventproductToUpdate)
+        public async Task<IActionResult> UpdateEvents(
+            [FromBody] CatalogEvent eventToUpdate)
         {
             var catalogEvent = await _context.CatalogEvents
                               .SingleOrDefaultAsync
-                              (i => i.Id == eventproductToUpdate.Id);
+                              (i => i.Id == eventToUpdate.Id);
             if (catalogEvent == null)
             {
-                return NotFound(new { Message = $"Item with id {eventproductToUpdate.Id} not found." });
+                return NotFound(new { Message = $"Item with id {eventToUpdate.Id} not found." });
             }
-            catalogEvent = eventproductToUpdate;
+            catalogEvent = eventToUpdate;
             _context.CatalogEvents.Update(catalogEvent);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetEventsById), new { id = eventproductToUpdate.Id });
+            return CreatedAtAction(nameof(GetEventsById), new { id = eventToUpdate.Id });
         }
-
 
         [HttpDelete]
         [Route("{id}")]
-        public async Task<IActionResult> DeleteEventProduct(int id)
+        public async Task<IActionResult> DeleteEvent(int id)
         {
-            var eventProduct = await _context.CatalogEvents
+            var eventItem = await _context.CatalogEvents
                 .SingleOrDefaultAsync(p => p.Id == id);
-            if (eventProduct == null)
+            if (eventItem == null)
             {
                 return NotFound();
 
             }
-            _context.CatalogEvents.Remove(eventProduct);
+            _context.CatalogEvents.Remove(eventItem);
             await _context.SaveChangesAsync();
             return NoContent();
         }
     }
 }
+
