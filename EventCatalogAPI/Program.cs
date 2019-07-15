@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using EventCatalogAPI.Data;
 
 namespace EventCatalogAPI
 {
@@ -25,9 +26,8 @@ namespace EventCatalogAPI
             }
             host.Run();
         }
-
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>();
+                public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+                    WebHost.CreateDefaultBuilder(args)
+                        .UseStartup<Startup>();
     }
 }

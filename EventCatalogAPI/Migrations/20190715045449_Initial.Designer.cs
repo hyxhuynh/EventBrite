@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EventCatalogAPI.Migrations
 {
     [DbContext(typeof(CatalogContext))]
-    [Migration("20190713072652_Initial")]
+    [Migration("20190715045449_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -62,9 +62,6 @@ namespace EventCatalogAPI.Migrations
 
                     b.Property<int>("CatalogTypeId");
 
-                    b.Property<string>("City")
-                        .IsRequired();
-
                     b.Property<string>("Description");
 
                     b.Property<DateTime>("EventDateTime");
@@ -78,9 +75,6 @@ namespace EventCatalogAPI.Migrations
                     b.Property<decimal>("Price");
 
                     b.Property<string>("State")
-                        .IsRequired();
-
-                    b.Property<string>("Zipcode")
                         .IsRequired();
 
                     b.HasKey("Id");
