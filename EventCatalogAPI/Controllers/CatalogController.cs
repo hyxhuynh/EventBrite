@@ -24,6 +24,7 @@ namespace EventCatalogAPI.Controllers
             _context = context;
             _config = config;
         }
+
         // GET api/catalog/items?pageSize=10&pageIndex=2
         [HttpGet]
         [Route("[action]")]
@@ -49,7 +50,7 @@ namespace EventCatalogAPI.Controllers
             return Ok(model);
         }
 
-        
+        // GET api/Catalog/Items/type/1/brand/null[?pageSize=4&pageIndex=0]
         [HttpGet]
         [Route("[action]/category/{catalogCategoryId}/type/{catalogTypeId}/zipcode/{catalogZipcodeId}/city/{catalogCityId}")]
         public async Task<IActionResult> Events(int? catalogCategoryId,
@@ -192,7 +193,7 @@ namespace EventCatalogAPI.Controllers
 
             return Ok(model);
         }
-        //JewelsonContainer- instead of "Item"  for the next 3 methods Kal states "Product" - just a naming difference
+
         [HttpPost]
         [Route("events")]
         public async Task<IActionResult> CreateEvent(
@@ -250,4 +251,3 @@ namespace EventCatalogAPI.Controllers
         }
     }
 }
-

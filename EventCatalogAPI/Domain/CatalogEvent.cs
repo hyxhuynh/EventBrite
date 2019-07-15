@@ -14,9 +14,9 @@ namespace EventCatalogAPI.Domain
         public string PictureUrl { get; set; }
         public string Address1 { get; set; }
         public string Address2 { get; set; }
-       // public string City { get; set; }
+        // public string City { get; set; }
         public string State { get; set; }
-        //public string Zipcode { get; set; }
+        // public string Zipcode { get; set; }
         public DateTime EventDateTime { get; set; }
 
         public int CatalogTypeId { get; set; }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 namespace EventCatalogAPI.ViewModels
 {
     public class PaginatedEventsViewModel<TEntity>
-         where TEntity : class
+        where TEntity : class
     {
         public int PageSize { get; set; }
         public int PageIndex { get; set; }
@@ -15,3 +15,4 @@ namespace EventCatalogAPI.ViewModels
         public IEnumerable<TEntity> Data { get; set; }
     }
 }
+
