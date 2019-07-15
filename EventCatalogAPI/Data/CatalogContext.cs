@@ -19,6 +19,8 @@ namespace EventCatalogAPI.Data
         public DbSet<CatalogCategory> CatalogCategories { get; set; }
         public DbSet<CatalogType> CatalogTypes { get; set; }
         public DbSet<CatalogEvent> CatalogEvents { get; set; }
+        public DbSet<CatalogEventCity> CatalogEventCities { get; set; }
+        public DbSet<CatalogEventZipcode> CatalogEventZipcodes { get; set; }
 
         protected override void OnModelCreating(
             ModelBuilder modelBuilder)
@@ -26,6 +28,8 @@ namespace EventCatalogAPI.Data
             modelBuilder.Entity<CatalogCategory>(ConfigureCatalogCategory);
             modelBuilder.Entity<CatalogType>(ConfigureCatalogType);
             modelBuilder.Entity<CatalogEvent>(ConfigureCatalogEvent);
+            modelBuilder.Entity<CatalogEventCity>(ConfigureCatalogEventCity);
+            modelBuilder.Entity<CatalogEventZipcode>(ConfigureCatalogEventZipcode);
 
         }
 
@@ -41,6 +45,17 @@ namespace EventCatalogAPI.Data
                 .HasMaxLength(50);
             builder.Property(c => c.Price)
                 .IsRequired();
+            builder.Property(c => c.Address1)
+                .IsRequired();
+           // builder.Property(c => c.City)
+              //  .IsRequired();
+            builder.Property(c => c.State)
+                .IsRequired();
+           // builder.Property(c => c.Zipcode)
+              //  .IsRequired();
+            builder.Property(c => c.EventDateTime)
+                .IsRequired();
+
 
             builder.HasOne(c => c.CatalogType)
                 .WithMany()
@@ -49,6 +64,14 @@ namespace EventCatalogAPI.Data
             builder.HasOne(c => c.CatalogCategory)
                 .WithMany()
                 .HasForeignKey(c => c.CatalogCategoryId);
+
+            builder.HasOne(c => c.CatalogEventCity)
+                .WithMany()
+                .HasForeignKey(c => c.CatalogEventCityId);
+
+            builder.HasOne(c => c.CatalogEventZipcode)
+                .WithMany()
+                .HasForeignKey(c => c.CatalogEventZipcodeId);
 
         }
 
@@ -74,6 +97,30 @@ namespace EventCatalogAPI.Data
                 .ForSqlServerUseSequenceHiLo("catalog_category_hilo");
 
             builder.Property(c => c.Category)
+                .IsRequired()
+                .HasMaxLength(100);
+        }
+
+        private void ConfigureCatalogEventZipcode(EntityTypeBuilder<CatalogEventZipcode> builder)
+        {
+            builder.ToTable("CatalogEventZipcodes");
+            builder.Property(c => c.Id)
+                .IsRequired()
+                .ForSqlServerUseSequenceHiLo("catalog_event_zipcode_hilo");
+
+            builder.Property(c => c.Zipcode)
+                .IsRequired()
+                .HasMaxLength(5);
+        }
+
+        private void ConfigureCatalogEventCity(EntityTypeBuilder<CatalogEventCity> builder)
+        {
+            builder.ToTable("CatalogEventCities");
+            builder.Property(c => c.Id)
+                .IsRequired()
+                .ForSqlServerUseSequenceHiLo("catalog_event_city_hilo");
+
+            builder.Property(c => c.City)
                 .IsRequired()
                 .HasMaxLength(100);
         }
