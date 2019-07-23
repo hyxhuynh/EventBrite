@@ -26,7 +26,16 @@ namespace EventCatalogAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var connectionString = Configuration["ConnectionString"];
+            //var connectionString = Configuration["ConnectionString"];
+            /* for appsettings.json-if not using Docker add the following:
+             * "ConnectionString": "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=catalogDb;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False",
+             * "ExternalCatalogBaseUrl = "http://localhost/60663/",
+             */
+            var server = Configuration["DatabaseServer"];
+            var database = Configuration["DatabaseName"];
+            var user = Configuration["DatabaseUser"];
+            var password = Configuration["DatabaseUserPassword"];
+            var connectionString = $"Server={server};Database={database};User={user};Password={password}";
             services.AddDbContext<CatalogContext>(options =>
                     options.UseSqlServer(connectionString));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
