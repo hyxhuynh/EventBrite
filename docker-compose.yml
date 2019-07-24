@@ -30,7 +30,7 @@ services:
     environment:
       ACCEPT_EULA: Y
       SA_PASSWORD: EventApi(!)
-    container_name: catalogeventdb
+    container_name: catalogDb
     ports:
       - "5080:1433"
     networks:
