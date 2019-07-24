@@ -6,6 +6,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20190724010952_Fourth.cs" />
+    <Compile Remove="Migrations\20190724010952_Fourth.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="wwwroot\Pics\" />
   </ItemGroup>
 
