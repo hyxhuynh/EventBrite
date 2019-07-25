@@ -5,7 +5,7 @@ networks:
   backend:
 
 services:
-  catalogapi:
+  eventcatalogapi:
     build:
       context: .\EventCatalogAPI
       dockerfile: Dockerfile
@@ -18,7 +18,7 @@ services:
       ExternalCatalogBaseUrl: http://localhost:5071
     ports:
       - "5071:80"
-    container_name: eventcatalogapi
+    container_name: eventcatalogAPI
     networks:
       - backend
       - frontend
