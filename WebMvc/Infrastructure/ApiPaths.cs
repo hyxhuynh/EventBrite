@@ -15,7 +15,7 @@ namespace WebMvc.Infrastructure
             }
             public static string GetAllCategories(string baseUri)
             {
-                return $"{baseUri}catalogcatagories";
+                return $"{baseUri}catalogcategories";
             }
             public static string GetAllEventCities(string baseUri)
             {
@@ -39,7 +39,9 @@ namespace WebMvc.Infrastructure
                     filterQs = $"/type/{typeQs}/category/{categoryQs}/eventzipcode/{eventcityQs}/eventzipcode/{eventzipcodeQs}";
                 }
 
-                return $"{baseUri}items{filterQs}?pageIndex={page}&pageSize={take}";
+                // FC Changed to events instead of "items"
+                // This is because in the controller in the API, action names are Events
+                return $"{baseUri}events{filterQs}?pageIndex={page}&pageSize={take}";
             }
         }
     }

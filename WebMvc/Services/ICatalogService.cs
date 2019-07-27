@@ -7,7 +7,7 @@ using WebMvc.Models;
 
 namespace WebMvc.Services
 {
-    interface ICatalogService
+    public interface ICatalogService
     {
         Task<Catalog> GetCatalogEventsAsync(int page, int size,
     int? category, int? type, int ? eventcity, int ? eventzipcode);

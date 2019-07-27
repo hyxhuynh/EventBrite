@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using WebMvc.Infrastructure;
 using WebMvc.Models;
 
@@ -32,25 +33,120 @@ namespace WebMvc.Services
             return response;
         }
 
-        // Continue here ==================
-        public Task<IEnumerable<SelectListItem>> GetCategoriesAsync()
+        public async Task<IEnumerable<SelectListItem>> GetCategoriesAsync()
         {
-            throw new NotImplementedException();
+            var categoryUri = ApiPaths.Catalog.GetAllCategories(_baseUri);
+            var dataString = await _client.GetStringAsync(categoryUri);
+            var events = new List<SelectListItem>
+            {
+                new SelectListItem
+                {
+                    Value=null,
+                    Text="All",
+                    Selected = true
+                }
+            };
+
+            var categories = JArray.Parse(dataString);
+            foreach (var eventItem in categories)
+            {
+                events.Add(
+                    new SelectListItem
+                    {
+                        Value = eventItem.Value<string>("id"),
+                        Text = eventItem.Value<string>("category")
+                    }
+                 );
+            }
+
+            return events;
         }
 
-        public Task<IEnumerable<SelectListItem>> GetEventCitiesAsync()
+        public async Task<IEnumerable<SelectListItem>> GetEventCitiesAsync()
         {
-            throw new NotImplementedException();
+            var cityUri = ApiPaths.Catalog.GetAllEventCities(_baseUri);
+            var dataString = await _client.GetStringAsync(cityUri);
+            var events = new List<SelectListItem>
+            {
+                new SelectListItem
+                {
+                    Value=null,
+                    Text="All",
+                    Selected = true
+                }
+            };
+
+            var cities = JArray.Parse(dataString);
+            foreach (var city in cities)
+            {
+                events.Add(
+                    new SelectListItem
+                    {
+                        Value = city.Value<string>("id"),
+                        Text = city.Value<string>("city")
+                    }
+                 );
+            }
+
+            return events;
         }
 
-        public Task<IEnumerable<SelectListItem>> GetEventZipcodesAsync()
+        public async Task<IEnumerable<SelectListItem>> GetEventZipcodesAsync()
         {
-            throw new NotImplementedException();
+            var zipUri = ApiPaths.Catalog.GetAllEventZipcodes(_baseUri);
+            var dataString = await _client.GetStringAsync(zipUri);
+            var events = new List<SelectListItem>
+            {
+                new SelectListItem
+                {
+                    Value=null,
+                    Text="All",
+                    Selected = true
+                }
+            };
+
+            var zips = JArray.Parse(dataString);
+            foreach (var zip in zips)
+            {
+                events.Add(
+                    new SelectListItem
+                    {
+                        Value = zip.Value<string>("id"),
+                        Text = zip.Value<string>("zipcode")
+                    }
+                 );
+            }
+
+            return events;
         }
 
-        public Task<IEnumerable<SelectListItem>> GetTypesAsync()
+        public async Task<IEnumerable<SelectListItem>> GetTypesAsync()
         {
-            throw new NotImplementedException();
+            var typeUri = ApiPaths.Catalog.GetAllTypes(_baseUri);
+            var dataString = await _client.GetStringAsync(typeUri);
+            var events = new List<SelectListItem>
+            {
+                new SelectListItem
+                {
+                    Value=null,
+                    Text="All",
+                    Selected = true
+                }
+            };
+
+            var types = JArray.Parse(dataString);
+            foreach (var type in types)
+            {
+                events.Add(
+                    new SelectListItem
+                    {
+                        Value = type.Value<string>("id"),
+                        Text = type.Value<string>("type")
+                    }
+                 );
+            }
+
+            return events;
         }
     }
 }
