@@ -39,8 +39,6 @@ namespace WebMvc.Infrastructure
                     filterQs = $"/type/{typeQs}/category/{categoryQs}/eventzipcode/{eventcityQs}/eventzipcode/{eventzipcodeQs}";
                 }
 
-                // FC Changed to events instead of "items"
-                // This is because in the controller in the API, action names are Events
                 return $"{baseUri}events{filterQs}?pageIndex={page}&pageSize={take}";
             }
         }

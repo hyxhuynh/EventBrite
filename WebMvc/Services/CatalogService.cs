@@ -48,13 +48,13 @@ namespace WebMvc.Services
             };
 
             var categories = JArray.Parse(dataString);
-            foreach (var eventItem in categories)
+            foreach (var category in categories)
             {
                 events.Add(
                     new SelectListItem
                     {
-                        Value = eventItem.Value<string>("id"),
-                        Text = eventItem.Value<string>("category")
+                        Value = category.Value<string>("id"),
+                        Text = category.Value<string>("category")
                     }
                  );
             }
