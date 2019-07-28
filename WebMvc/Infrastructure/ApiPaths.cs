@@ -20,12 +20,12 @@ namespace WebMvc.Infrastructure
 
             public static string GetAllZipCodes(string baseUri)
             {
-                return $"{baseUri}catalogzipcodes";
+                return $"{baseUri}catalogeventzipcodes";
             }
 
             public static string GetAllCities(string baseUri)
             {
-                return $"{baseUri}catalogcities";
+                return $"{baseUri}catalogeventcities";
             }
 
             public static string GetAllCatalogEvents(string baseUri,

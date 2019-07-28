@@ -16,7 +16,7 @@ namespace WebMvc.Controllers
 
         public async Task<IActionResult> Index(int? type, int? category, int? zipcode, int? city, int? page)
         {
-            var itemsOnPage = 6;
+            var itemsOnPage = 5;
             var catalog =
                 await _service.GetCatalogEventsAsync(page ?? 0,
                 itemsOnPage, type, category, zipcode, city);
