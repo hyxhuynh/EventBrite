@@ -53,15 +53,16 @@
             <label class="esh-catalog-label" data-title="category">
                 <select asp-for="@Model.CategoriesFilterApplied" asp-items="@Model.Categories" class="esh-catalog-filter"></select>
             </label>
+
             <label class="esh-catalog-label" data-title="type">
                 <select asp-for="@Model.TypesFilterApplied" asp-items="@Model.Types" class="esh-catalog-filter"></select>
             </label>
-            <input class="esh-catalog-send" type="image" src="~/images/arrow-right.svg" />
-            <label class="esh-catalog-label" data-title="type">
+
+            <label class="esh-catalog-label" data-title="city">
                 <select asp-for="@Model.CitiesFilterApplied" asp-items="@Model.Cities" class="esh-catalog-filter"></select>
             </label>
-            <input class="esh-catalog-send" type="image" src="~/images/arrow-right.svg" />
-            <label class="esh-catalog-label" data-title="type">
+
+            <label class="esh-catalog-label" data-title="zipcode">
                 <select asp-for="@Model.ZipCodesFilterApplied" asp-items="@Model.ZipCodes" class="esh-catalog-filter"></select>
             </label>
             <input class="esh-catalog-send" type="image" src="~/images/arrow-right.svg" />
