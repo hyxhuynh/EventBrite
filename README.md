@@ -5,5 +5,6 @@ The EventBrite API builds models for an Event, Type, Category, Event City, and E
 Event properties such as name, description, and date/time are written out in the CatalogSeed to allow the user to gather more information about each event specifically and pictures
 are associated with each event as well. 
 
-For more information, here is a youtube link:
-https://youtu.be/U_jZzqHwu9c
+For more information, here is a youtube link:  
+First Part: https://youtu.be/U_jZzqHwu9c  
+Second Part: https://youtu.be/fqQnGyV27L0
