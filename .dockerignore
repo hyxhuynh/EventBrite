@@ -11,8 +11,6 @@
 **/obj
 **/Dockerfile
 **/Dockerfile.develop
-**/docker-compose.yml
-**/docker-compose.*.yml
 **/*.dbmdl
 **/*.jfm
 **/secrets.dev.yaml
