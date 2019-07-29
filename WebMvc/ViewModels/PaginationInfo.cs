@@ -16,4 +16,3 @@ namespace WebMvc.ViewModels
         public string Next { get; set; }
     }
 }
-

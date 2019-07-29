@@ -20,6 +20,5 @@ namespace WebMvc.ViewModels
         public int? CategoriesFilterApplied { get; set; }
         public int? ZipCodesFilterApplied { get; set; }
         public int? CitiesFilterApplied { get; set; }
-
     }
 }

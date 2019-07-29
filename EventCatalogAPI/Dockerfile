@@ -9,5 +9,5 @@ FROM build AS publish
 RUN dotnet publish "EventCatalogAPI.csproj" -c Release -o /app
 
 WORKDIR /app
-COPY --from=publish /app .
+COPY --from=build /app .
 ENTRYPOINT ["dotnet", "EventCatalogAPI.dll"]

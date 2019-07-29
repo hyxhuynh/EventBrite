@@ -50,7 +50,7 @@ namespace EventCatalogAPI.Controllers
             return Ok(model);
         }
 
-        // GET api/Catalog/Items/type/1/brand/null[?pageSize=4&pageIndex=0]
+        // GET api/Catalog/Items/type/1/category/null[?pageSize=4&pageIndex=0]
         [HttpGet]
         [Route("[action]/category/{catalogCategoryId}/type/{catalogTypeId}/zipcode/{catalogZipcodeId}/city/{catalogCityId}")]
         public async Task<IActionResult> Events(int? catalogCategoryId,

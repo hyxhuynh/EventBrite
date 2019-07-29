@@ -17,35 +17,30 @@ namespace WebMvc.Infrastructure
             {
                 return $"{baseUri}catalogcategories";
             }
-
-            public static string GetAllZipCodes(string baseUri)
-            {
-                return $"{baseUri}catalogeventzipcodes";
-            }
-
-            public static string GetAllCities(string baseUri)
+            public static string GetAllEventCities(string baseUri)
             {
                 return $"{baseUri}catalogeventcities";
             }
-
-            public static string GetAllCatalogEvents(string baseUri,
-                int page, int take, int? type, int? category, int? zipcode, int? city)
+            // ============= Remove Zipcode here if not needed ==============
+            public static string GetAllEventZipcodes(string baseUri)
+            {
+                return $"{baseUri}catalogeventzipcodes";
+            }
+            public static string GetAllCatalogEvents(string baseUri, int page, int take, int? type, int? category, int? eventcity, int? eventzipcode)
             {
                 var filterQs = string.Empty;
 
-                if (type.HasValue || category.HasValue || zipcode.HasValue || city.HasValue)
+                if (category.HasValue || type.HasValue || eventcity.HasValue || eventzipcode.HasValue)
                 {
-                    var typesQs = (type.HasValue) ? type.Value.ToString() : "null";
-                    var categoriesQs = (category.HasValue) ? category.Value.ToString() : "null";
-                    var zipcodesQs = (zipcode.HasValue) ? zipcode.Value.ToString() : "null";
-                    var citiesQs = (city.HasValue) ? city.Value.ToString() : "null";
-                    filterQs = $"/type/{typesQs}/category/{categoriesQs}/zipcode/{zipcodesQs}/city/{citiesQs}";
+                    var categoryQs = (category.HasValue) ? category.Value.ToString() : "null";
+                    var typeQs = (type.HasValue) ? type.Value.ToString() : "null";
+                    var eventcityQs = (eventcity.HasValue) ? eventcity.Value.ToString() : "null";
+                    var eventzipcodeQs = (eventzipcode.HasValue) ? eventzipcode.Value.ToString() : "null";
+                    filterQs = $"/type/{typeQs}/category/{categoryQs}/eventzipcode/{eventcityQs}/eventzipcode/{eventzipcodeQs}";
                 }
 
                 return $"{baseUri}events{filterQs}?pageIndex={page}&pageSize={take}";
-
             }
-
         }
     }
 }

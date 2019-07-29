@@ -22,44 +22,14 @@ namespace WebMvc.Services
             _client = httpclient;
             _baseUri = $"{config["CatalogUrl"]}/api/catalog/";
         }
-
-        public async Task<IEnumerable<SelectListItem>> GetTypesAsync()
-        {
-            var typeUri = ApiPaths.Catalog.GetAllTypes(_baseUri);
-            var dataString = await _client.GetStringAsync(typeUri);
-            var events = new List<SelectListItem>
-            {
-                new SelectListItem
-                {
-                    Value=null,
-                    Text="All",
-                    Selected = true
-                }
-            };
-
-            var types = JArray.Parse(dataString);
-            foreach (var type in types)
-            {
-                events.Add(
-                    new SelectListItem
-                    {
-                        Value = type.Value<string>("id"),
-                        Text = type.Value<string>("type")
-                    }
-                 );
-            }
-
-            return events;
-        }
-
-        public async Task<CatalogPVM> GetCatalogEventsAsync(int page, int size, int? type, int? category, int? zipcode, int? city)
+        public async Task<Catalog> GetCatalogEventsAsync(int page, int size, int? category, int? type, int? eventcity, int? eventzipcode)
         {
             var catalogEventsUri = ApiPaths.Catalog
                             .GetAllCatalogEvents(_baseUri,
-                                page, size, type, category, zipcode, city);
+                                page, size, category, type, eventcity, eventzipcode);
 
             var dataString = await _client.GetStringAsync(catalogEventsUri);
-            var response = JsonConvert.DeserializeObject<CatalogPVM>(dataString);
+            var response = JsonConvert.DeserializeObject<Catalog>(dataString);
             return response;
         }
 
@@ -68,7 +38,6 @@ namespace WebMvc.Services
             var categoryUri = ApiPaths.Catalog.GetAllCategories(_baseUri);
             var dataString = await _client.GetStringAsync(categoryUri);
             var events = new List<SelectListItem>
-            //use differente variable name?
             {
                 new SelectListItem
                 {
@@ -93,9 +62,38 @@ namespace WebMvc.Services
             return events;
         }
 
-        public async Task<IEnumerable<SelectListItem>> GetZipCodesAsync()
+        public async Task<IEnumerable<SelectListItem>> GetEventCitiesAsync()
         {
-            var zipUri = ApiPaths.Catalog.GetAllZipCodes(_baseUri);
+            var cityUri = ApiPaths.Catalog.GetAllEventCities(_baseUri);
+            var dataString = await _client.GetStringAsync(cityUri);
+            var events = new List<SelectListItem>
+            {
+                new SelectListItem
+                {
+                    Value=null,
+                    Text="All",
+                    Selected = true
+                }
+            };
+
+            var cities = JArray.Parse(dataString);
+            foreach (var city in cities)
+            {
+                events.Add(
+                    new SelectListItem
+                    {
+                        Value = city.Value<string>("id"),
+                        Text = city.Value<string>("city")
+                    }
+                 );
+            }
+
+            return events;
+        }
+
+        public async Task<IEnumerable<SelectListItem>> GetEventZipcodesAsync()
+        {
+            var zipUri = ApiPaths.Catalog.GetAllEventZipcodes(_baseUri);
             var dataString = await _client.GetStringAsync(zipUri);
             var events = new List<SelectListItem>
             {
@@ -122,10 +120,10 @@ namespace WebMvc.Services
             return events;
         }
 
-        public async Task<IEnumerable<SelectListItem>> GetCitiesAsync()
+        public async Task<IEnumerable<SelectListItem>> GetTypesAsync()
         {
-            var cityUri = ApiPaths.Catalog.GetAllCities(_baseUri);
-            var dataString = await _client.GetStringAsync(cityUri);
+            var typeUri = ApiPaths.Catalog.GetAllTypes(_baseUri);
+            var dataString = await _client.GetStringAsync(typeUri);
             var events = new List<SelectListItem>
             {
                 new SelectListItem
@@ -136,14 +134,14 @@ namespace WebMvc.Services
                 }
             };
 
-            var cities = JArray.Parse(dataString);
-            foreach (var city in cities)
+            var types = JArray.Parse(dataString);
+            foreach (var type in types)
             {
                 events.Add(
                     new SelectListItem
                     {
-                        Value = city.Value<string>("id"),
-                        Text = city.Value<string>("city")
+                        Value = type.Value<string>("id"),
+                        Text = type.Value<string>("type")
                     }
                  );
             }

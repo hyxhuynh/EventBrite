@@ -11,7 +11,7 @@
         <li data-target="#myCarousel" data-slide-to="3"></li>
     </ol>
     <div class="carousel-inner" role="listbox">
-        <div class="item active">
+        <div class="event active">
             <img src="~/images/banner.png" alt="ASP.NET" class="img-responsive" />
             <div class="carousel-caption" role="option">
                 <p>
@@ -19,7 +19,7 @@
                 </p>
             </div>
         </div>
-        <div class="item">
+        <div class="event">
             <img src="~/images/banner-2.png" alt="Visual Studio" class="img-responsive" />
             <div class="carousel-caption" role="option">
                 <p>
@@ -27,7 +27,7 @@
                 </p>
             </div>
         </div>
-        <div class="item">
+        <div class="event">
             <img src="~/images/banner-3.png" alt="Package Management" class="img-responsive" />
             <div class="carousel-caption" role="option">
                 <p>
@@ -50,11 +50,20 @@
 <section class="esh-catalog-filters">
     <div class="container">
         <form asp-action="Index" asp-controller="Catalog" method="post">
-            <label class="esh-catalog-label" data-title="brand">
+            <label class="esh-catalog-label" data-title="category">
+                <select asp-for="@Model.CategoriesFilterApplied" asp-items="@Model.Categories" class="esh-catalog-filter"></select>
+            </label>
+
+            <label class="esh-catalog-label" data-title="type">
                 <select asp-for="@Model.TypesFilterApplied" asp-items="@Model.Types" class="esh-catalog-filter"></select>
             </label>
-            <label class="esh-catalog-label" data-title="type">
-                <select asp-for="@Model.CategoriesFilterApplied" asp-items="@Model.Categories" class="esh-catalog-filter"></select>
+
+            <label class="esh-catalog-label" data-title="city">
+                <select asp-for="@Model.CitiesFilterApplied" asp-items="@Model.Cities" class="esh-catalog-filter"></select>
+            </label>
+
+            <label class="esh-catalog-label" data-title="zipcode">
+                <select asp-for="@Model.ZipCodesFilterApplied" asp-items="@Model.ZipCodes" class="esh-catalog-filter"></select>
             </label>
             <input class="esh-catalog-send" type="image" src="~/images/arrow-right.svg" />
         </form>
@@ -65,10 +74,10 @@
     {
         @Html.Partial("_pagination", Model.PaginationInfo)
 
-        <div class="esh-catalog-items row">
+        <div class="esh-catalog-events row">
             @foreach (var catalogEvent in Model.CatalogEvents)
             {
-                <div class="esh-catalog-item col-md-4">
+                <div class="esh-catalog-event col-md-4">
                     @Html.Partial("_product", catalogEvent)
                 </div>
             }
@@ -78,7 +87,7 @@
     }
     else
     {
-        <div class="esh-catalog-items row">
+        <div class="esh-catalog-events row">
             THERE ARE NO RESULTS THAT MATCH YOUR SEARCH
         </div>
     }

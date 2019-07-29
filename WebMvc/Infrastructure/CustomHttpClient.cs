@@ -13,15 +13,12 @@ namespace WebMvc.Infrastructure
         {
             _client = new HttpClient();
         }
-
         public Task<HttpResponseMessage> DeleteAsync(string uri, string authorizationToken = null, string authorizationMethod = "Bearer")
         {
             throw new NotImplementedException();
         }
 
-        public async Task<string> GetStringAsync(string uri,
-            string authorizationToken = null,
-            string authorizationMethod = "Bearer")
+        public async Task<string> GetStringAsync(string uri, string authorizationToken = null, string authorizationMethod = "Bearer")
         {
             var requestMessage = new HttpRequestMessage(
                 HttpMethod.Get, uri);
@@ -38,12 +35,12 @@ namespace WebMvc.Infrastructure
             return await response.Content.ReadAsStringAsync();
         }
 
-        public Task<HttpResponseMessage> PostAsync<T>(string uri, T eventItem, string authorizationToken = null, string authorizationMethod = "Bearer")
+        public Task<HttpResponseMessage> PostAsync<T>(string uri, T item, string authorizationToken = null, string authorizationMethod = "Bearer")
         {
             throw new NotImplementedException();
         }
 
-        public Task<HttpResponseMessage> PutAsync<T>(string uri, T eventItem, string authorizationToken = null, string authorizationMethod = "Bearer")
+        public Task<HttpResponseMessage> PutAsync<T>(string uri, T item, string authorizationToken = null, string authorizationMethod = "Bearer")
         {
             throw new NotImplementedException();
         }
