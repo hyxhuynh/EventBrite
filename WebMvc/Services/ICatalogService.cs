@@ -9,14 +9,13 @@ namespace WebMvc.Services
 {
     public interface ICatalogService
     {
-        Task<CatalogPVM> GetCatalogEventsAsync(int page, int size,
-            int? type, int? category, int? zipcode, int? city);
+        Task<Catalog> GetCatalogEventsAsync(int page, int size,
+    int? category, int? type, int ? eventcity, int ? eventzipcode);
 
-        Task<IEnumerable<SelectListItem>> GetTypesAsync();
         Task<IEnumerable<SelectListItem>> GetCategoriesAsync();
-        Task<IEnumerable<SelectListItem>> GetZipCodesAsync();
-        Task<IEnumerable<SelectListItem>> GetCitiesAsync();
-
+        Task<IEnumerable<SelectListItem>> GetTypesAsync();
+        Task<IEnumerable<SelectListItem>> GetEventCitiesAsync();
+        Task<IEnumerable<SelectListItem>> GetEventZipcodesAsync();
 
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebMvc.Services;
 using WebMvc.ViewModels;
@@ -16,7 +17,7 @@ namespace WebMvc.Controllers
 
         public async Task<IActionResult> Index(int? type, int? category, int? zipcode, int? city, int? page)
         {
-            var itemsOnPage = 5;
+            var itemsOnPage = 6;
             var catalog =
                 await _service.GetCatalogEventsAsync(page ?? 0,
                 itemsOnPage, type, category, zipcode, city);
@@ -33,8 +34,8 @@ namespace WebMvc.Controllers
                 CatalogEvents = catalog.Data,
                 Types = await _service.GetTypesAsync(),
                 Categories = await _service.GetCategoriesAsync(),
-                ZipCodes = await _service.GetZipCodesAsync(),
-                Cities = await _service.GetCitiesAsync(),
+                ZipCodes = await _service.GetEventZipcodesAsync(),
+                Cities = await _service.GetEventCitiesAsync(),
                 TypesFilterApplied = type ?? 0,
                 CategoriesFilterApplied = category ?? 0,
                 ZipCodesFilterApplied = zipcode ?? 0,
@@ -45,6 +46,15 @@ namespace WebMvc.Controllers
             vm.PaginationInfo.Next = (vm.PaginationInfo.ActualPage == vm.PaginationInfo.TotalPages - 1) ? "is-disabled" : "";
 
             return View(vm);
+        }
+
+        [Authorize]
+        public IActionResult About()
+        {
+            ViewData["Message"] = "Your application description page.";
+
+
+            return View();
         }
     }
 }
