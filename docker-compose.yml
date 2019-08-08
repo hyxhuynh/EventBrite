@@ -33,6 +33,8 @@ services:
     container_name: webmvcevents
     environment:
       CatalogUrl: http://eventcatalogapi
+      IdentityUrl: http://192.168.207.113:5078
+      CallBackUrl: http://192.168.207.113:5085
       ASPNETCORE_ENVIRONMENT: Development
     ports:
       - "5085:80"
@@ -40,6 +42,7 @@ services:
       - frontend
     depends_on:
       - eventcatalogapi
+      - tokenserver
 
   mssqlserver:
     image: "microsoft/mssql-server-linux:latest"
@@ -51,3 +54,20 @@ services:
       - "5080:1433"
     networks:
       - backend
+
+  tokenserver:
+    build:
+      context: .\TokenServiceApi
+      dockerfile: Dockerfile
+    image: events/tokenapi
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      MvcClient: http://localhost:5085
+    ports:
+      - "5078:80"
+    container_name: tokenserviceapi
+    networks:
+      - backend
+      - frontend
+    depends_on:
+      - mssqlserver
