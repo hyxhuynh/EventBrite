@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.705
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29102.190
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{C3403C66-AA4A-4D61-8C50-647E45B22383}"
 EndProject
@@ -16,6 +16,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebMvc", "WebMvc\WebMvc.csproj", "{DF0659A9-75CF-480F-BD46-6907AA1E1001}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TokenServiceApi", "TokenServiceApi\TokenServiceApi.csproj", "{344A9683-7FC9-4114-B2B7-E7D24E3C8364}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CartApi", "CartApi\CartApi.csproj", "{3704DD55-84F6-4306-98C0-E19168FC7C18}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{344A9683-7FC9-4114-B2B7-E7D24E3C8364}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{344A9683-7FC9-4114-B2B7-E7D24E3C8364}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{344A9683-7FC9-4114-B2B7-E7D24E3C8364}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3704DD55-84F6-4306-98C0-E19168FC7C18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3704DD55-84F6-4306-98C0-E19168FC7C18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3704DD55-84F6-4306-98C0-E19168FC7C18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3704DD55-84F6-4306-98C0-E19168FC7C18}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -49,6 +55,7 @@ Global
 		{AC115022-0D3F-498F-A533-8DFFF0AAA392} = {374AD9CE-FA82-4A84-BE84-D60FDFB0880F}
 		{DF0659A9-75CF-480F-BD46-6907AA1E1001} = {803B2255-4E52-48C9-8C39-CB95BD454E54}
 		{344A9683-7FC9-4114-B2B7-E7D24E3C8364} = {374AD9CE-FA82-4A84-BE84-D60FDFB0880F}
+		{3704DD55-84F6-4306-98C0-E19168FC7C18} = {374AD9CE-FA82-4A84-BE84-D60FDFB0880F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5F057FA0-4DDF-4F15-9F32-C28ADEAC6F4B}
