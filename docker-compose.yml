@@ -9,7 +9,12 @@ services:
     build:
       context: .\EventCatalogAPI
       dockerfile: Dockerfile
-    image: events/catalogapi
+    image: events/catalogapi    
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
     environment:
       ASPNETCORE_ENVIRONMENT: Development
       DatabaseServer: mssqlserver
@@ -31,7 +36,11 @@ services:
       context: .\CartApi
       dockerfile: Dockerfile
     image: events/cartapi
-
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
     environment:
       ASPNETCORE_ENVIRONMENT: Development
       IdentityUrl: http://172.16.59.179:5072
@@ -47,6 +56,32 @@ services:
       - tokenservice
       - rabbitmq
 
+  orderservice:
+    build:
+      context: .\OrderApi
+      dockerfile: Dockerfile
+    image: events/orderapi
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      IdentityUrl: http://172.16.59.179:5072
+      SQLSERVER_HOST: eventcatalogdb
+      SA_PASSWORD: EventApi(!)
+      DATABASE: OrdersDb
+    ports:
+      - "5076:80"
+    container_name: orderAPI
+    networks:
+      - backend
+      - frontend
+    depends_on:
+      - mssqlserver
+      - tokenservice
+      - rabbitmq
 
   tokenservice:
     build:

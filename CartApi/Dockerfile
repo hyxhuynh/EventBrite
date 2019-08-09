@@ -1,15 +1,13 @@
-﻿FROM microsoft/aspnetcore-build:2.0 AS build-env
+﻿FROM microsoft/dotnet:2.1-sdk AS build
 WORKDIR /app
+EXPOSE 80
 
-# copy everything else and build
 COPY . .
-RUN dotnet restore
+RUN dotnet restore CartApi.csproj
 
-RUN dotnet publish -c Release -o out
+FROM build AS publish
+RUN dotnet publish "CartApi.csproj" -c Release -o /app
 
-# build runtime image
-FROM microsoft/aspnetcore:2.0
 WORKDIR /app
-COPY --from=build-env /app/out .
-
+COPY --from=build /app .
 ENTRYPOINT ["dotnet", "CartApi.dll"]
