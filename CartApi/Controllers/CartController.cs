@@ -14,7 +14,8 @@ namespace EventBrite.Services.CartApi.Controllers
     public class CartController : Controller
     {
         private ICartRepository _repository;
-        private ILogger _logger;
+        //4 add readonly to logger var
+        private readonly ILogger _logger;
         public CartController(ICartRepository repository, ILoggerFactory factory)
         {
             _repository = repository;

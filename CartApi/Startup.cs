@@ -23,6 +23,7 @@ using MassTransit;
 using Autofac.Extensions.DependencyInjection;
 using MassTransit.Util;
 using CartApi.Infrastructure.Filters;
+using Microsoft.AspNetCore.Mvc;
 
 namespace CartApi
 {
@@ -53,6 +54,7 @@ namespace CartApi
             //    options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
             //}).
 
+            /* 2
             services.AddMvcCore(
                 options => options.Filters.Add(typeof(HttpGlobalExceptionFilter))
                 )
@@ -60,12 +62,9 @@ namespace CartApi
                 .AddApiExplorer();
 
             services.Configure<CartSettings>(Configuration);
+            */
 
-            ConfigureAuthService(services);
-
-
-
-
+            //3 services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddSingleton<ConnectionMultiplexer>(sp =>
             {
                 var settings = sp.GetRequiredService<IOptions<CartSettings>>().Value;
@@ -76,6 +75,9 @@ namespace CartApi
 
                 return ConnectionMultiplexer.Connect(configuration);
             });
+            //1
+            ConfigureAuthService(services);
+
             services.AddSwaggerGen(options =>
             {
                 options.DescribeAllEnumsAsStrings();

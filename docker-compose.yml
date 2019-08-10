@@ -69,7 +69,7 @@ services:
     environment:
       ASPNETCORE_ENVIRONMENT: Development
       IdentityUrl: http://172.16.59.179:5072
-      SQLSERVER_HOST: eventcatalogdb
+      SQLSERVER_HOST: catalogDatabase
       SA_PASSWORD: EventApi(!)
       DATABASE: OrdersDb
     ports:
@@ -111,6 +111,9 @@ services:
       IdentityUrl: http://172.16.59.179:5072
       CallbackUrl: http://localhost:5085
       CartUrl: http://cart
+      OrderUrl: http://order
+      StripePublicKey: pk_test_gKeuyBUP2nJZLBfXY6fwAUGS00I8vd9clM 
+      StripePrivateKey: sk_test_N8bxcQQ2GxKQ3ghkwZEUooDO00z8P17KzU
       ASPNETCORE_ENVIRONMENT: Development
     ports:
       - "5085:80"
@@ -120,6 +123,7 @@ services:
       - eventcatalogservice
       - tokenservice
       - cartservice
+      - orderservice
 
   mssqlserver:
     image: "microsoft/mssql-server-linux:latest"
