@@ -39,9 +39,9 @@ namespace WebMvc
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            //services.AddTransient<IIdentityService<ApplicationUser>, IdentityService>();
-            //services.AddTransient<ICartService, CartService>();
-            //services.AddTransient<IOrderService, OrderService>();
+            services.AddTransient<IIdentityService<ApplicationUser>, IdentityService>();
+            services.AddTransient<ICartService, CartService>();
+            services.AddTransient<IOrderService, OrderService>();
 
 
             var identityUrl = Configuration.GetValue<string>("IdentityUrl");

@@ -43,7 +43,7 @@ services:
         max-file: "10"
     environment:
       ASPNETCORE_ENVIRONMENT: Development
-      IdentityUrl: http://172.16.59.179:5072
+      IdentityUrl: http://192.168.3.123:5072
       ConnectionString: basket.data
     ports:
       - "5066:80"
@@ -68,7 +68,7 @@ services:
         max-file: "10"
     environment:
       ASPNETCORE_ENVIRONMENT: Development
-      IdentityUrl: http://172.16.59.179:5072
+      IdentityUrl: http://192.168.3.123:5072
       SQLSERVER_HOST: catalogDatabase
       SA_PASSWORD: EventApi(!)
       DATABASE: OrdersDb

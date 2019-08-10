@@ -1,27 +1,30 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using EventBrite.Services.CartApi.Model;
-using Microsoft.Extensions.Logging;
 using System.Net;
+using System.Threading.Tasks;
+using CartApi.Model;
+using EventBrite.Services.CartApi.Model;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
-namespace EventBrite.Services.CartApi.Controllers
+namespace CartApi.Controllers
 {
     [Route("api/v1/[controller]")]
 
     public class CartController : Controller
     {
         private ICartRepository _repository;
-        //4 add readonly to logger var
         private readonly ILogger _logger;
-        public CartController(ICartRepository repository, ILoggerFactory factory)
+        public CartController(ICartRepository repository,
+            ILoggerFactory logger)
         {
             _repository = repository;
-            _logger = factory.CreateLogger<CartController>();
+            _logger = logger.CreateLogger<CartController>();
         }
-        // GET api/values/5
+
+        // GET api/v1/cart/5
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(Cart), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> Get(string id)
@@ -31,9 +34,9 @@ namespace EventBrite.Services.CartApi.Controllers
             return Ok(basket);
         }
 
-        // POST api/values
+        // POST api/v1/cart
         [HttpPost]
-       
+
         [ProducesResponseType(typeof(Cart), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> Post([FromBody]Cart value)
         {
@@ -42,13 +45,13 @@ namespace EventBrite.Services.CartApi.Controllers
             return Ok(basket);
         }
 
-        // DELETE api/values/5
+        // DELETE api/v1/cart/5
         [HttpDelete("{id}")]
         public void Delete(string id)
         {
             _logger.LogInformation("Delete method in Cart controller reached");
             _repository.DeleteCartAsync(id);
-         
+
 
         }
     }

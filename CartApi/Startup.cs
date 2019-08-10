@@ -1,29 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Threading.Tasks;
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
+using CartApi.Infrastructure.Filters;
+using CartApi.Messaging.Consumers;
+using CartApi.Model;
+using EventBrite.Services.CartApi.Model;
+using MassTransit;
+using MassTransit.Util;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using StackExchange.Redis;
-using Microsoft.AspNetCore.Http;
-using EventBrite.Services.CartApi.Model;
-using CartApi.Model;
 using Swashbuckle.AspNetCore.Swagger;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using System.IdentityModel.Tokens.Jwt;
-using Newtonsoft.Json;
-using EventBrite.Services.CartApi.Infrastructure.Filters;
-using Autofac;
-using CartApi.Messaging.Consumers;
-using MassTransit;
-using Autofac.Extensions.DependencyInjection;
-using MassTransit.Util;
-using CartApi.Infrastructure.Filters;
-using Microsoft.AspNetCore.Mvc;
 
 namespace CartApi
 {
@@ -34,48 +32,23 @@ namespace CartApi
             Configuration = configuration;
         }
 
-        public IContainer ApplicationContainer { get; private set; }
         public IConfiguration Configuration { get; }
+        public IContainer ApplicationContainer { get; private set; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
-
-            //services.AddMvc(options =>
-            //{
-            //    options.Filters.Add(typeof(HttpGlobalExceptionFilter));
-
-            //}).
-
-            //AddControllersAsServices()
-            //;
-            //AddJsonOptions(options => {
-            //    options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
-            //    options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
-            //}).
-
-            /* 2
-            services.AddMvcCore(
-                options => options.Filters.Add(typeof(HttpGlobalExceptionFilter))
-                )
-                .AddJsonFormatters()
-                .AddApiExplorer();
-
-            services.Configure<CartSettings>(Configuration);
-            */
-
-            //3 services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc();
             services.AddSingleton<ConnectionMultiplexer>(sp =>
             {
-                var settings = sp.GetRequiredService<IOptions<CartSettings>>().Value;
-                var configuration = ConfigurationOptions.Parse(settings.ConnectionString, true);
+                //var settings = sp.GetRequiredService<IOptions<CartSettings>>().Value;
+                var configuration = ConfigurationOptions.Parse(Configuration["ConnectionString"], true);
                 //resolving via dns before connecting
                 configuration.ResolveDns = true;
                 configuration.AbortOnConnectFail = false;
 
                 return ConnectionMultiplexer.Connect(configuration);
             });
-            //1
             ConfigureAuthService(services);
 
             services.AddSwaggerGen(options =>
@@ -103,19 +76,8 @@ namespace CartApi
                 options.OperationFilter<AuthorizeCheckOperationFilter>();
 
             });
-
-            services.AddCors(options =>
-            {
-                options.AddPolicy("CorsPolicy",
-                    poll => poll.AllowAnyOrigin()
-                    .AllowAnyMethod()
-                    .AllowAnyHeader()
-                    .AllowCredentials());
-            });
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddTransient<ICartRepository, RedisCartRepository>();
-            //   services.AddTransient<IIdentityService, IdentityService>();
-
             var builder = new ContainerBuilder();
 
             // register a specific consumer
@@ -135,7 +97,7 @@ namespace CartApi
 
 
                     // https://stackoverflow.com/questions/39573721/disable-round-robin-pattern-and-use-fanout-on-masstransit
-                    cfg.ReceiveEndpoint(host, "EventBrite" + Guid.NewGuid().ToString(), e =>
+                    cfg.ReceiveEndpoint(host, "JewelsOncontainers" + Guid.NewGuid().ToString(), e =>
                     {
                         e.LoadFrom(context);
 
@@ -152,9 +114,6 @@ namespace CartApi
             ApplicationContainer = builder.Build();
 
             return new AutofacServiceProvider(ApplicationContainer);
-
-
-
 
 
         }
@@ -176,17 +135,8 @@ namespace CartApi
                 options.Authority = identityUrl;
                 options.RequireHttpsMetadata = false;
                 options.Audience = "basket";
-
-
-
             });
-
-
-
-
-
         }
-
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, IApplicationLifetime lifetime)
         {
@@ -216,7 +166,5 @@ namespace CartApi
             var busHandle = TaskUtil.Await(() => bus.StartAsync());
             lifetime.ApplicationStopping.Register(() => busHandle.Stop());
         }
-
-
     }
 }

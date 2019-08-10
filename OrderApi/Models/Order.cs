@@ -31,7 +31,6 @@ namespace EventBrite.Services.OrderApi.Models
             OrderItems = new List<OrderItem>();
         }
 
-
     }
     public enum OrderStatus
     {
