@@ -38,6 +38,8 @@ namespace CartApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
+             // setcompatibilityversion not working- IMvc Builder does not contain definition for it?
+            //services.AddMvc().SetCompatibilityVersion((CompatibilityVersion.Version_2_1);
             services.AddMvc();
             services.AddSingleton<ConnectionMultiplexer>(sp =>
             {

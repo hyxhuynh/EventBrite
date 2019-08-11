@@ -110,8 +110,8 @@ services:
       CatalogUrl: http://eventcatalogservice
       IdentityUrl: http://172.18.61.209:5072
       CallbackUrl: http://localhost:5085
-      CartUrl: http://cart
-      OrderUrl: http://order
+      CartUrl: http://cartservice
+      OrderUrl: http://orderservice
       StripePublicKey: pk_test_gKeuyBUP2nJZLBfXY6fwAUGS00I8vd9clM 
       StripePrivateKey: sk_test_N8bxcQQ2GxKQ3ghkwZEUooDO00z8P17KzU
       ASPNETCORE_ENVIRONMENT: Development
