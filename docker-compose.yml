@@ -68,7 +68,7 @@ services:
         max-file: "10"
     environment:
       ASPNETCORE_ENVIRONMENT: Development
-      IdentityUrl: http://192.168.3.123:5072
+      IdentityUrl: http://172.18.61.209:5072
       SQLSERVER_HOST: catalogDatabase
       SA_PASSWORD: EventApi(!)
       DATABASE: OrdersDb
@@ -108,7 +108,7 @@ services:
     container_name: webmvcevents
     environment:
       CatalogUrl: http://eventcatalogservice
-      IdentityUrl: http://172.16.59.179:5072
+      IdentityUrl: http://172.18.61.209:5072
       CallbackUrl: http://localhost:5085
       CartUrl: http://cart
       OrderUrl: http://order

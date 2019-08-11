@@ -69,7 +69,7 @@ namespace OrderApi
             // WaitForDBInit(_connectionString);
 
             var hostname = Environment.GetEnvironmentVariable("SQLSERVER_HOST") ?? "mssqlserver";
-            var password = Environment.GetEnvironmentVariable("SA_PASSWORD") ?? "MyProduct!123";
+            var password = Environment.GetEnvironmentVariable("SA_PASSWORD") ?? "EventApi(!)";
             var database = Environment.GetEnvironmentVariable("DATABASE") ?? "OrdersDb";
 
             var connectionString = $"Server={hostname};Database={database};User ID=sa;Password={password};";
